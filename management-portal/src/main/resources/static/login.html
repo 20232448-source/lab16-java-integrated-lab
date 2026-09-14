@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Đăng nhập | OrderFlow</title><link rel="stylesheet" href="/app.css"></head>
+<body class="login-page"><div class="login-art"><div class="brand"><span class="brand-mark">OF</span><span>OrderFlow</span></div><div class="login-copy"><p class="eyebrow">JAVA INTEGRATED LAB · 16</p><h1>Mọi đơn hàng,<br><i>đúng nhịp.</i></h1><p>Theo dõi kho, vận hành đơn hàng và giữ đội ngũ phối hợp trên một hệ thống.</p></div><small>© 2026 OrderFlow Operations</small></div><main class="login-card"><p class="eyebrow">WELCOME BACK</p><h2>Đăng nhập hệ thống</h2><p class="login-muted">Sử dụng tài khoản được cấp để tiếp tục.</p><p class="login-error" id="loginError"></p><form method="post" action="/login"><label>Tên đăng nhập<input name="username" autocomplete="username" required autofocus></label><label>Mật khẩu<input name="password" type="password" autocomplete="current-password" required></label><button class="primary full" type="submit">Đăng nhập <span>→</span></button></form><div class="demo-login"><strong>Tài khoản demo</strong><span>manager01 / 123456</span><span>warehouse01 / 123456</span></div></main><script>
+    if (location.search.includes('error')) {
+        document.querySelector('#loginError').textContent = 'Sai tên đăng nhập hoặc mật khẩu.';
+    }
+    if (location.search.includes('logout')) {
+        document.querySelector('#loginError').textContent = 'Bạn đã đăng xuất thành công.';
+        document.querySelector('#loginError').classList.add('success');
+    }
+</script></body></html>

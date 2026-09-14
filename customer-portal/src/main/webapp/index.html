@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Customer Portal | OrderFlow</title>
+    <link rel="stylesheet" href="customer.css">
+    <style>
+        header {
+            min-height: 72px;
+            height: auto;
+            padding: 14px max(24px, 7vw);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .brand {
+            letter-spacing: -0.03em;
+        }
+
+        .customer-panel {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-box {
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(233, 244, 239, 0.18);
+            border-radius: 16px;
+            padding: 10px 12px;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .auth-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .auth-box input {
+            width: 150px;
+            height: 36px;
+            border: 1px solid rgba(168, 197, 187, 0.45);
+            border-radius: 10px;
+            background: rgba(16, 48, 43, 0.6);
+            color: #edf7f2;
+            padding: 0 12px;
+            font-size: 12px;
+            outline: none;
+        }
+
+        .auth-box input::placeholder {
+            color: rgba(237, 247, 242, 0.7);
+        }
+
+        .auth-box input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(232, 181, 86, 0.18);
+        }
+
+        .auth-box button {
+            height: 36px;
+            border: 0;
+            border-radius: 10px;
+            padding: 0 14px;
+            font: 600 12px Manrope, sans-serif;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .auth-box button:hover {
+            transform: translateY(-1px);
+        }
+
+        #loginBtn {
+            background: var(--gold);
+            color: #173b35;
+            box-shadow: 0 8px 18px rgba(232, 181, 86, 0.25);
+        }
+
+        #logoutBtn, #loadOrders {
+            background: rgba(233, 244, 239, 0.12);
+            color: #edf7f2;
+            border: 1px solid rgba(233, 244, 239, 0.18);
+        }
+
+        .panel-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 8px;
+            min-height: 20px;
+        }
+
+        .auth-status {
+            font-size: 11px;
+            color: #cfe2dc;
+            letter-spacing: 0.02em;
+        }
+
+        .auth-status.logged-in {
+            color: #ffd27a;
+            font-weight: 700;
+        }
+
+        #loadOrders {
+            padding: 0 10px;
+            height: 28px;
+            font-size: 11px;
+            border-radius: 8px;
+        }
+
+        @media (max-width: 760px) {
+            header {
+                padding-left: 18px;
+                padding-right: 18px;
+            }
+
+            .customer-panel {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .auth-box {
+                width: 100%;
+            }
+
+            .auth-row {
+                justify-content: stretch;
+            }
+
+            .auth-row > * {
+                flex: 1 1 140px;
+            }
+
+            .panel-footer {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="brand"><span>OF</span> OrderFlow</div>
+    <div class="customer-panel">
+        <div class="auth-box">
+            <div class="auth-row">
+                <input id="customerId" type="hidden" value="">
+                <input id="username" type="text" placeholder="Tên đăng nhập">
+                <input id="password" type="password" placeholder="Mật khẩu">
+                <button id="loginBtn">Đăng nhập</button>
+                <button id="logoutBtn" class="secondary">Đăng xuất</button>
+            </div>
+            <div class="panel-footer">
+                <div id="authStatus" class="auth-status">Chưa đăng nhập</div>
+                <button id="loadOrders">Đơn của tôi</button>
+            </div>
+        </div>
+    </div>
+</header>
+<main>
+    <section class="intro"><p>SHOPPING PORTAL</p><h1>Đặt hàng<br><i>thật dễ.</i></h1><span>Chọn sản phẩm, kiểm tra tồn kho và gửi đơn trong vài giây.</span></section>
+    <section class="layout"><div><div class="section-title"><h2>Sản phẩm</h2><span id="productCount"></span></div><div id="products" class="products"><div class="loading">Đang tải...</div></div></div><aside class="cart"><div class="cart-head"><h2>Giỏ hàng</h2><span id="cartCount">0</span></div><div id="cartItems" class="cart-items"><p class="empty">Giỏ hàng đang trống</p></div><div class="cart-total"><span>Tạm tính</span><strong id="total">₫ 0</strong></div><button class="checkout" id="checkout">Gửi đơn hàng <span>→</span></button><p id="message" class="message"></p></aside></section>
+    <section class="history"><div class="section-title"><h2>Đơn hàng của tôi</h2><span id="historyHint">Đăng nhập để xem đơn hàng</span></div><div id="orders" class="orders"></div></section>
+</main>
+<script src="customer.js"></script>
+</body>
+</html>
